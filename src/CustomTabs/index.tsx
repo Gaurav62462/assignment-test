@@ -32,7 +32,7 @@ export default function CustomTabs() {
     };
 
     return (
-        <div className="w-[32%]">
+        <div className="mb-4">
                 <Tabs tabs={tabs} tabsClick={(val:TabsType)=>handleClick(val)} />
             <div className='border-[1px] border-gray_200 rounded-[12px] mt-6'>
                 {

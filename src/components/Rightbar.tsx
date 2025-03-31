@@ -16,6 +16,18 @@ const Rightbar = () => {
   const [lineItem, setLineItem] = useState("single");
   const [isOpen, setIsOpen] = useState(false);
 
+  const fields = [
+   { name:"Bill Number",type:'input'},
+  { name: "Bill Date",type:'input'},
+   {name: "Paid Amount",type:'input'},
+   {name: "Due Date",type:'input'},
+    {name:"Bank Transaction Ref",type:'input'},
+    {name: "Payment Mode",type:'select'},
+    {name: "Currency",type:'select'},
+    {name: "Total Amount",type:'input'},
+    {name: "Tax Amount",type:'input'},
+    {name: "FX Rate",type:'input'},
+  ]
 
   const SectionHeader: React.FC<TitleProps> = ({ title }) => {
     return (
@@ -31,13 +43,13 @@ const Rightbar = () => {
   return (
     <>
        <button
-        className="fixed top-4 right-4 z-50 md:hidden bg-black text-white p-2 rounded-full"
+        className="fixed top-4 right-4 z-50 md:hidden  text-white p-2 rounded-full"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? '==' : 'X'}
+        {isOpen ?  <img src={'images/arrow-l.svg'} alt="close" /> : <img src={'images/arrow-r.svg'} alt="close" />}
       </button>
 
-    <aside className={`bg-white h-screen px-6 py-5 flex flex-col shadow-lg border-l transition-all duration-300 ease-in-out
+    <aside className={`bg-white h-screen px-6 py-5 flex flex-col transition-all duration-300 ease-in-out
           ${isOpen ? "w-[80%] fixed top-0 right-0" : "w-0 md:w-[23%] md:relative md:block"} 
           overflow-hidden md:overflow-auto`}>
       <div className='flex   p-4 items-start flex-col border-[1px] border-gray_200'>
@@ -79,8 +91,9 @@ const Rightbar = () => {
       <div className="max-w-lg mx-auto p-4 bg-white rounded-lg  h-screen overflow-auto">
 
         <div className="">
+        <label className="font-bold text-[14px] text-velvel_curtain">Type Comment</label>
           <textarea
-            placeholder="Type Comment"
+            placeholder="Start typing..."
             className="w-full p-2 border-b-2 "
           ></textarea>
           <CustomButton className="w-full mt-6 bg-[#F6F6F6] text-velvel_curtain text-[13px] font-medium rounded-[8px]">
@@ -121,24 +134,25 @@ const Rightbar = () => {
             </label>
           </div>
 
-          {[
-            "Bill Number",
-            "Bill Date",
-            "Paid Amount",
-            "Due Date",
-            "Payment Mode",
-            "Currency",
-            "Total Amount",
-            "Tax Amount",
-            "FX Rate",
-          ].map((label, index) => (
-            <div key={index} className="my-2">
-              <label className="block text-sm text-velvel_curtain font-normal">{label}</label>
+          {(fields ||  []).map((label, index) => (
+            <div key={index} className="my-2 mt-4">
+              {label.type === 'select' ?
+              <>
+               <label className="block text-sm text-velvel_curtain font-normal">{label.name}</label>
+                <select className="w-full border-b-[1px] border-[velvel_curtain] text-black_500 text-[16px]  h-[40px] rounded-[0px]">
+                      <option value={'method'}>Select payment method</option>
+              </select>
+              </>
+              :
+              <>
+              <label className="block text-sm text-velvel_curtain font-normal">{label.name}</label>
               <input
                 type="text"
                 placeholder="Start Typing"
-                className="w-full p-2 border-b-[1px] placeholder-velvel_curtain text-sm font-bold"
+                className="w-full pb-3 border-b-[1px] placeholder-velvel_curtain text-sm font-bold"
               />
+                </>
+              }
             </div>
           ))}
         </div>
@@ -170,9 +184,10 @@ const Rightbar = () => {
             </label>
           </div>
         </div>
+        <label className="block text-[14px] text-velvel_curtain font-normal mt-4">Description</label>
         <textarea
           placeholder="Enter Description"
-          className="w-full p-2 rounded-md border-b-[1px] border-gray_200 mb-6"
+          className="w-full p-2 rounded-0 border-b-[1px] border-gray_200 mb-6"
         ></textarea>
 
 
@@ -197,11 +212,12 @@ const Rightbar = () => {
 
 
         <div className="mt-4">
-          <CustomButton className="w-full bg-[#603AE51A] text-blue_500 py-2 rounded-md">
+          <CustomButton className="w-full bg-[#603AE51A] text-[14px] font-[500] text-blue_500 py-2 rounded-md">
             Save
           </CustomButton>
-          <CustomButton className="w-full bg-blue_500 text-white py-2 mt-2 rounded-md">
+          <CustomButton className="w-full flex items-center justify-center bg-blue_500 text-[14px] font-[500]  text-white py-2 mt-2 rounded-md">
             Publish
+            <img src={'images/arrow-b.svg'} className="m-2" alt='logo' />
           </CustomButton>
         </div>
       </div>

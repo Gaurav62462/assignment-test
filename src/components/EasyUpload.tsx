@@ -38,9 +38,9 @@ const EasyUpload = ({setUploadedFile,setFileUrl}:EasyUploadProps) => {
       </div>
 
       <div className="mt-4 flex items-center justify-between">
-        <div className="w-[50%] border-b  pb-[9px] mr-[15px]">
+        <div className="w-[50%] mr-[15px]">
         <p className="text-velvel_curtain text-sm font-normal">Document Owner</p>
-        <p className="font-semibold text-sm font-bold mt-3">Accountant 01</p>
+        <input className="border-b w-[100%] h-[40px] font-semibold text-sm font-bold " />
         </div>
         <div className="flex items-start justify-between w-[50%] border-b  flex-col">
         <p className="text-gray-500  ml-[10px]">Client</p>

@@ -3,6 +3,7 @@ export interface MenuItem {
   name: string;
   content: string;
   icon:string
+  to:string
 }
 
 export interface DocumentItem {
